@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "dockhold": {
+      "type": "http",
+      "url": "https://api.dockhold.eu/mcp",
+      "headers": {
+        "Authorization": "Bearer ${DOCKHOLD_API_TOKEN}"
+      }
+    }
+  }
+}

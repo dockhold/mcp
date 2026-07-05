@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "eu.dockhold/dockhold",
+  "title": "Dockhold",
+  "description": "Deploy a GitHub repo to a live HTTPS URL from your AI tool; read logs, set variables, resize apps.",
+  "version": "0.1.0",
+  "websiteUrl": "https://dockhold.eu",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.dockhold.eu/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <token>. Create a token in the Dockhold dashboard: Settings -> API tokens (choose read-only or read+deploy). Format: Bearer dh_mcp_...",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
