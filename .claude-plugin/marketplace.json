@@ -1,0 +1,24 @@
+{
+  "name": "dockhold",
+  "owner": {
+    "name": "Dockhold",
+    "url": "https://dockhold.eu"
+  },
+  "description": "Deploy and operate apps on Dockhold from Claude Code.",
+  "plugins": [
+    {
+      "name": "dockhold",
+      "source": "./",
+      "description": "Put the project you are working on online. Deploys the current folder or a GitHub repo to a live HTTPS URL on Dockhold; reads status and logs, sets variables, resizes apps and databases.",
+      "author": {
+        "name": "Dockhold",
+        "url": "https://dockhold.eu"
+      },
+      "homepage": "https://dockhold.eu/docs",
+      "repository": "https://github.com/dockhold/mcp",
+      "license": "MIT",
+      "keywords": ["deploy", "hosting", "mcp", "paas", "web-apps", "github"],
+      "category": "deployment"
+    }
+  ]
+}
