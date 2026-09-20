@@ -1,0 +1,17 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.1.0/mcp.schema.json",
+  "mcpServers": {
+    "dockhold": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "dockhold",
+        "mcp"
+      ],
+      "env": {
+        "DOCKHOLD_REF": "cursor"
+      }
+    }
+  }
+}
