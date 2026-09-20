@@ -19,16 +19,16 @@ Every install below starts the same local MCP server, `npx -y dockhold mcp`. It 
 /plugin install dockhold@dockhold
 ```
 
-This installs the MCP server and a `deploy` skill that knows the whole flow: preflight, sign-in, deploy, and what to do when a build fails.
+This installs the MCP server and a `deploy` skill (invoked as `/dockhold:deploy`, or picked up on its own when you ask to put the project online) that knows the whole flow: preflight, sign-in, deploy, and what to do when a build fails.
 
 ### Cursor
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=dockhold&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImRvY2tob2xkIiwibWNwIl19)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=dockhold&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImRvY2tob2xkIiwibWNwIl0sImVudiI6eyJET0NLSE9MRF9SRUYiOiJjdXJzb3IifX0=)
 
 The button opens this link in Cursor:
 
 ```
-cursor://anysphere.cursor-deeplink/mcp/install?name=dockhold&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImRvY2tob2xkIiwibWNwIl19
+cursor://anysphere.cursor-deeplink/mcp/install?name=dockhold&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImRvY2tob2xkIiwibWNwIl0sImVudiI6eyJET0NLSE9MRF9SRUYiOiJjdXJzb3IifX0=
 ```
 
 Or add it by hand to `~/.cursor/mcp.json` (all projects) or `.cursor/mcp.json` (one project):
@@ -38,7 +38,8 @@ Or add it by hand to `~/.cursor/mcp.json` (all projects) or `.cursor/mcp.json` (
   "mcpServers": {
     "dockhold": {
       "command": "npx",
-      "args": ["-y", "dockhold", "mcp"]
+      "args": ["-y", "dockhold", "mcp"],
+      "env": { "DOCKHOLD_REF": "cursor" }
     }
   }
 }
@@ -47,7 +48,7 @@ Or add it by hand to `~/.cursor/mcp.json` (all projects) or `.cursor/mcp.json` (
 ### VS Code
 
 ```sh
-code --add-mcp '{"name":"dockhold","command":"npx","args":["-y","dockhold","mcp"]}'
+code --add-mcp '{"name":"dockhold","command":"npx","args":["-y","dockhold","mcp"],"env":{"DOCKHOLD_REF":"vscode"}}'
 ```
 
 ### Any other MCP client
@@ -69,7 +70,7 @@ If your client gives a server only a few seconds to start, the first `npx -y doc
 
 ## Sign in
 
-The first time a tool needs your account it answers: `Not signed in to Dockhold. Run "npx dockhold login" in a terminal, then try again.` Run that command, a browser tab opens, and you are done. The sign-in lasts 90 days and is shared by the CLI and every client above. Nothing else to configure.
+The first time a tool needs your account it answers with a message that says to run `npx dockhold login` in a terminal. Run it, a browser tab opens, and you are done. The sign-in lasts 90 days and is shared by the CLI and every client above. Nothing else to configure.
 
 ## What it looks like
 
@@ -87,7 +88,7 @@ The first time a tool needs your account it answers: `Not signed in to Dockhold.
 >
 > **AI:** *(calls `get_app_logs`)* The last 100 lines: the server started on port 8080 and has served 3 requests. No errors.
 
-Local folders deploy through the CLI, which needs no GitHub account. A GitHub repository deploys through the `deploy_app` tool, and pushes to it redeploy the app.
+Local folders deploy through the CLI, which needs no GitHub account. A GitHub repository deploys through the `deploy_app` tool. Deploys on every push need the repository connected to Dockhold (`list_github_repos` gives the `github_installation_id` to pass); a repository deployed by URL alone builds once.
 
 ## Tools
 
@@ -108,9 +109,8 @@ Local folders deploy through the CLI, which needs no GitHub account. A GitHub re
 | `resize_database_storage` | deploy | Grow a managed database's disk |
 | `set_app_storage` | deploy | Give an app storage that survives restarts and deploys, or grow it |
 | `remove_app_storage` | deploy | Remove an app's storage and erase its files |
-| `set_app_secret`, `unset_app_secret`, `bind_app_secret`, `list_secrets`, `list_app_secrets` | secrets | Store, attach, detach, and list encrypted secrets |
 
-The browser sign-in has the `read` and `deploy` scopes. The `secrets` tools need a dashboard token with the `secrets` scope (see the remote server below); through the browser sign-in they answer with a permission error, and secrets are added in the dashboard's Secrets section instead.
+The browser sign-in has the `read` and `deploy` scopes, which covers every tool above.
 
 ## Remote server (no CLI)
 
@@ -125,6 +125,8 @@ For a client that cannot run a local command, the same tools are served over Str
 ```
 
 Claude Code: `claude mcp add --transport http dockhold https://api.dockhold.eu/mcp --header "Authorization: Bearer dh_mcp_..."`. This is the one setup that puts a token in a config file, so keep that file out of version control.
+
+A dashboard token can also carry the `secrets` scope, which unlocks five more tools over this connection: `set_app_secret`, `unset_app_secret`, `bind_app_secret`, `list_secrets`, `list_app_secrets`. The browser sign-in never has that scope; with the plugin, secrets are added in the dashboard's Secrets section.
 
 ## Getting started with Dockhold
 
