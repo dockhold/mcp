@@ -76,4 +76,6 @@ Read tools work with a read-only token. Deploy tools need a read+deploy token. S
 
 ## Getting started with Dockhold
 
-Dockhold is the easiest way to put your app online: push from GitHub, always on, secure by default. Sign in at [app.dockhold.eu](https://app.dockhold.eu) with GitHub, deploy a repo, get a live HTTPS URL. The free tier needs no card.
+Dockhold is the easiest way to put your app online: push from GitHub, always on, secure by default. Sign in at [app.dockhold.eu](https://app.dockhold.eu), deploy a repo, get a live HTTPS URL. The free tier needs no card.
+
+No GitHub repo yet? Deploy straight from a folder on your computer with the CLI: `npx dockhold login`, then `npx dockhold deploy`. Details at [github.com/dockhold/cli](https://github.com/dockhold/cli).
