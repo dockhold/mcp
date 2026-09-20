@@ -1,12 +1,12 @@
 {
   "name": "dockhold",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Deploy the folder you are in or a GitHub repo to a live HTTPS URL from your AI tool; read logs, set variables, resize apps.",
   "author": {
     "name": "Dockhold",
     "url": "https://dockhold.eu"
   },
-  "homepage": "https://dockhold.eu",
+  "homepage": "https://dockhold.eu/docs/recipes/deploy-from-your-ai-tool",
   "repository": "https://github.com/dockhold/mcp",
   "license": "MIT",
   "keywords": ["deploy", "hosting", "mcp", "paas", "github", "web-apps"]
