@@ -28,16 +28,21 @@ a terminal (a browser tab opens) and call the tool again.
 ## Workflow for "put this app online"
 
 If the code is only a local folder, run `npx dockhold deploy` and report the
-URL it prints. If the code is on GitHub and the user wants deploys on every
-push, call `deploy_app` with the repository URL, poll `get_app_status` until
-it is reachable, and report the HTTPS URL. On failure, read the build log
+URL it prints. If the code is on GitHub, call `deploy_app` with the
+repository URL, poll `get_app_status` until it is reachable, and report the
+HTTPS URL. Deploys on every push happen only when the repository is
+connected: pass the `github_installation_id` that `list_github_repos` returns
+(if the repository is not listed, the user connects it in the dashboard
+first). A repository deployed by URL alone builds once and does not follow
+pushes. On failure, read the build log
 (`npx dockhold logs --type build`) or the runtime log (`get_app_logs`) and fix
 the app, not the platform. Never report a URL as live before the deploy has
 finished.
 
-Builds: a `Dockerfile` at the project root is used when present. Without one,
-accounts with compute added get automatic stack detection; a free account
-needs a Dockerfile at the root (examples:
+Builds: a `Dockerfile` at the project root is used when present, or the one
+named under `"build": {"dockerfile": "<path>"}` in `dockhold.json`. Without
+either, accounts with compute added get automatic stack detection; a free
+account needs one of the two (examples:
 https://dockhold.eu/docs/concepts/dockerfiles). Do not write CI pipelines for
 deployment.
 
