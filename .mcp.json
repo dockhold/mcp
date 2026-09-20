@@ -1,11 +1,9 @@
 {
   "mcpServers": {
     "dockhold": {
-      "type": "http",
-      "url": "https://api.dockhold.eu/mcp",
-      "headers": {
-        "Authorization": "Bearer ${DOCKHOLD_API_TOKEN}"
-      }
+      "command": "npx",
+      "args": ["-y", "dockhold", "mcp"],
+      "env": { "DOCKHOLD_REF": "claude-plugin" }
     }
   }
 }
