@@ -45,6 +45,8 @@ Or add it by hand to `~/.cursor/mcp.json` (all projects) or `.cursor/mcp.json` (
 }
 ```
 
+This repo is also an [Agent Plugin](https://agent-plugins.org) (`plugin.json` and `mcp.json` at the root), so Cursor can install it from its plugin browser once it is listed there: open **Customize** in the sidebar, search for Dockhold, and choose **Install**.
+
 ### VS Code
 
 ```sh
