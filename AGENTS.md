@@ -41,8 +41,11 @@ finished.
 
 Builds: a `Dockerfile` at the project root is used when present, or the one
 named under `"build": {"dockerfile": "<path>"}` in `dockhold.json`. Without
-either, accounts with compute added get automatic stack detection; a free
-account needs one of the two (examples:
+either, Dockhold builds the stacks it recognises on every account (Next.js
+standalone, Vite, Node with a `start` script, static sites, FastAPI), and
+accounts with compute added get automatic builds for any other stack. A stack
+it does not recognise on a free account is declined within seconds with the
+fix named; apply it, or add a `Dockerfile` (examples:
 https://dockhold.eu/docs/concepts/dockerfiles). Do not write CI pipelines for
 deployment.
 
