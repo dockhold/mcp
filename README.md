@@ -53,6 +53,14 @@ This repo is also an [Agent Plugin](https://agent-plugins.org) (`plugin.json` an
 code --add-mcp '{"name":"dockhold","command":"npx","args":["-y","dockhold","mcp"],"env":{"DOCKHOLD_REF":"vscode"}}'
 ```
 
+### Gemini CLI
+
+```sh
+gemini extensions install https://github.com/dockhold/mcp
+```
+
+This repo is also a Gemini CLI extension (`gemini-extension.json` at the root), so the install adds the MCP server and the same `deploy` skill.
+
 ### Any other MCP client
 
 Use the same server entry in your client's config:
