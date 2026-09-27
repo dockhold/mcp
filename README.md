@@ -61,6 +61,10 @@ gemini extensions install https://github.com/dockhold/mcp
 
 This repo is also a Gemini CLI extension (`gemini-extension.json` at the root), so the install adds the MCP server and the same `deploy` skill.
 
+### Cline
+
+Ask Cline to "install the MCP server from https://github.com/dockhold/mcp". It follows [`llms-install.md`](llms-install.md): one settings entry, no token, then a browser sign-in. To do it by hand, add the entry below to `cline_mcp_settings.json` with `"env": { "DOCKHOLD_REF": "cline" }`.
+
 ### Any other MCP client
 
 Use the same server entry in your client's config:
