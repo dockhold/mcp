@@ -14,7 +14,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "dockhold",
-      "version": "0.2.2",
+      "version": "0.2.6",
       "transport": {
         "type": "stdio"
       },

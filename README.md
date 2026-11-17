@@ -130,7 +130,7 @@ The CLI's browser sign-in (`npx dockhold login`) has the `read` and `deploy` sco
 
 For a client that cannot run a local command, the same tools are served over Streamable HTTP at `https://api.dockhold.eu/mcp`.
 
-**Sign in, no token.** Add `https://api.dockhold.eu/mcp` in ChatGPT (developer mode), claude.ai (a custom connector) or any MCP client with OAuth sign-in. The first time a tool needs your account, it sends you to sign in. A Dockhold screen lists what it may do: see your apps, deploy and manage them, and add secrets. Untick what you don't want. Disconnect it any time under API tokens in the dashboard sidebar, in "AI tools you connected". Claude Code: `claude mcp add --transport http dockhold https://api.dockhold.eu/mcp`, then sign in when asked (or run `/mcp` and choose Authenticate).
+**Sign in, no token.** Add `https://api.dockhold.eu/mcp` in ChatGPT (Plugins, then Add custom MCP server, with OAuth), claude.ai (a custom connector) or any MCP client with OAuth sign-in. The first time a tool needs your account, it sends you to sign in. A Dockhold screen lists what it may do: see your apps, deploy and manage them, and add secrets. Untick what you don't want. Disconnect it any time under API tokens in the dashboard sidebar, in "AI tools you connected". Claude Code: `claude mcp add --transport http dockhold https://api.dockhold.eu/mcp`, then sign in when asked (or run `/mcp` and choose Authenticate).
 
 **API token, for CI and scripts.** Create a token under API tokens in the [Dockhold dashboard](https://app.dockhold.eu) sidebar (read-only, read+deploy, or with secrets), and pass it as a bearer:
 
