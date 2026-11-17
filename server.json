@@ -3,7 +3,7 @@
   "name": "eu.dockhold/dockhold",
   "title": "Dockhold",
   "description": "Deploy your project to a live HTTPS URL from your AI tool; read logs, set variables, resize apps.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "websiteUrl": "https://dockhold.eu/docs/recipes/deploy-from-your-ai-tool",
   "repository": {
     "url": "https://github.com/dockhold/mcp",
@@ -40,7 +40,7 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Optional. A client that supports OAuth sign-in leaves this empty and signs in through the browser. For CI, scripts or a client that cannot sign in, send Bearer <token>. Create a token in the Dockhold dashboard: Settings -> API tokens (choose read-only or read+deploy). Format: Bearer dh_mcp_...",
+          "description": "Optional. A client with OAuth sign-in leaves this empty and signs in in the browser. For CI, scripts or a client that cannot sign in, send Bearer <token>, made under API tokens in the Dockhold dashboard sidebar. Format: Bearer dh_mcp_...",
           "isRequired": false,
           "isSecret": true
         }

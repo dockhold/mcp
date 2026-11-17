@@ -65,5 +65,5 @@ server, the same tools are served at `https://api.dockhold.eu/mcp`
 Code) connects by that URL alone: the user signs in when a tool first needs
 the account and approves what it may do. Never ask for a token for that path.
 For CI, scripts or a client that cannot sign in, use a bearer token the user
-creates in the dashboard under Settings, then API tokens. That setup carries a
+creates under API tokens in the dashboard sidebar. That setup carries a
 token in a config file; treat it as a secret.

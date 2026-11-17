@@ -124,15 +124,15 @@ Local folders deploy through the CLI, which needs no GitHub account. A GitHub re
 | `set_app_storage` | deploy | Give an app storage that survives restarts and deploys, or grow it |
 | `remove_app_storage` | deploy | Remove an app's storage and erase its files |
 
-The browser sign-in has the `read` and `deploy` scopes, which covers every tool above.
+The CLI's browser sign-in (`npx dockhold login`) has the `read` and `deploy` scopes, which covers every tool above.
 
 ## Remote server (no CLI)
 
 For a client that cannot run a local command, the same tools are served over Streamable HTTP at `https://api.dockhold.eu/mcp`.
 
-**Sign in, no token.** ChatGPT (developer mode, add a connector), claude.ai (add a custom connector) and any MCP client with OAuth sign-in connect by that URL alone. The tool asks you to sign in the first time it needs your account, you approve on a Dockhold screen that lists what it may do (read, deploy, and adding secrets; untick any you don't want), and you can disconnect it any time in the dashboard under API tokens, "AI tools you connected". Claude Code: `claude mcp add --transport http dockhold https://api.dockhold.eu/mcp`, then sign in when asked.
+**Sign in, no token.** Add `https://api.dockhold.eu/mcp` in ChatGPT (developer mode), claude.ai (a custom connector) or any MCP client with OAuth sign-in. The first time a tool needs your account, it sends you to sign in. A Dockhold screen lists what it may do: see your apps, deploy and manage them, and add secrets. Untick what you don't want. Disconnect it any time under API tokens in the dashboard sidebar, in "AI tools you connected". Claude Code: `claude mcp add --transport http dockhold https://api.dockhold.eu/mcp`, then sign in when asked (or run `/mcp` and choose Authenticate).
 
-**API token, for CI and scripts.** Create a token in the [Dockhold dashboard](https://app.dockhold.eu) under Settings, then API tokens (read-only, read+deploy, or with secrets), and pass it as a bearer:
+**API token, for CI and scripts.** Create a token under API tokens in the [Dockhold dashboard](https://app.dockhold.eu) sidebar (read-only, read+deploy, or with secrets), and pass it as a bearer:
 
 ```json
 {
