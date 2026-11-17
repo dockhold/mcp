@@ -124,11 +124,15 @@ Local folders deploy through the CLI, which needs no GitHub account. A GitHub re
 | `set_app_storage` | deploy | Give an app storage that survives restarts and deploys, or grow it |
 | `remove_app_storage` | deploy | Remove an app's storage and erase its files |
 
-The browser sign-in has the `read` and `deploy` scopes, which covers every tool above.
+The CLI's browser sign-in (`npx dockhold login`) has the `read` and `deploy` scopes, which covers every tool above.
 
 ## Remote server (no CLI)
 
-For a client that cannot run a local command, the same tools are served over Streamable HTTP at `https://api.dockhold.eu/mcp`. Create a token in the [Dockhold dashboard](https://app.dockhold.eu) under Settings, then API tokens (read-only, read+deploy, or with secrets), and pass it as a bearer:
+For a client that cannot run a local command, the same tools are served over Streamable HTTP at `https://api.dockhold.eu/mcp`.
+
+**Sign in, no token.** Add `https://api.dockhold.eu/mcp` in ChatGPT (Plugins, then Add custom MCP server, with OAuth), claude.ai (a custom connector) or any MCP client with OAuth sign-in. The first time a tool needs your account, it sends you to sign in. A Dockhold screen lists what it may do: see your apps, deploy and manage them, and add secrets. Untick what you don't want. Disconnect it any time under API tokens in the dashboard sidebar, in "AI tools you connected". Claude Code: `claude mcp add --transport http dockhold https://api.dockhold.eu/mcp`, then sign in when asked (or run `/mcp` and choose Authenticate).
+
+**API token, for CI and scripts.** Create a token under API tokens in the [Dockhold dashboard](https://app.dockhold.eu) sidebar (read-only, read+deploy, or with secrets), and pass it as a bearer:
 
 ```json
 {
@@ -140,7 +144,7 @@ For a client that cannot run a local command, the same tools are served over Str
 
 Claude Code: `claude mcp add --transport http dockhold https://api.dockhold.eu/mcp --header "Authorization: Bearer dh_mcp_..."`. This is the one setup that puts a token in a config file, so keep that file out of version control.
 
-A dashboard token can also carry the `secrets` scope, which unlocks five more tools over this connection: `set_app_secret`, `unset_app_secret`, `bind_app_secret`, `list_secrets`, `list_app_secrets`. The browser sign-in never has that scope; with the plugin, secrets are added in the dashboard's Secrets section.
+A dashboard token, or a sign-in connection where you leave the secrets box ticked, can carry the `secrets` scope, which unlocks five more tools over this connection: `set_app_secret`, `unset_app_secret`, `bind_app_secret`, `list_secrets`, `list_app_secrets`. The CLI's browser sign-in never has that scope; with the plugin, secrets are added in the dashboard's Secrets section.
 
 ## Getting started with Dockhold
 

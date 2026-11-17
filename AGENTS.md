@@ -61,6 +61,9 @@ do not attempt it through this connection.
 
 For a client that cannot run a local command and needs a remote HTTP MCP
 server, the same tools are served at `https://api.dockhold.eu/mcp`
-(Streamable HTTP) with a bearer token the user creates in the dashboard under
-Settings, then API tokens. That is the only setup that carries a token in a
-config file; treat it as a secret.
+(Streamable HTTP). A client with OAuth sign-in (ChatGPT, claude.ai, Claude
+Code) connects by that URL alone: the user signs in when a tool first needs
+the account and approves what it may do. Never ask for a token for that path.
+For CI, scripts or a client that cannot sign in, use a bearer token the user
+creates under API tokens in the dashboard sidebar. That setup carries a
+token in a config file; treat it as a secret.
