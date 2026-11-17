@@ -128,7 +128,11 @@ The browser sign-in has the `read` and `deploy` scopes, which covers every tool 
 
 ## Remote server (no CLI)
 
-For a client that cannot run a local command, the same tools are served over Streamable HTTP at `https://api.dockhold.eu/mcp`. Create a token in the [Dockhold dashboard](https://app.dockhold.eu) under Settings, then API tokens (read-only, read+deploy, or with secrets), and pass it as a bearer:
+For a client that cannot run a local command, the same tools are served over Streamable HTTP at `https://api.dockhold.eu/mcp`.
+
+**Sign in, no token.** ChatGPT (developer mode, add a connector), claude.ai (add a custom connector) and any MCP client with OAuth sign-in connect by that URL alone. The tool asks you to sign in the first time it needs your account, you approve on a Dockhold screen that lists what it may do (read, deploy, and adding secrets; untick any you don't want), and you can disconnect it any time in the dashboard under API tokens, "AI tools you connected". Claude Code: `claude mcp add --transport http dockhold https://api.dockhold.eu/mcp`, then sign in when asked.
+
+**API token, for CI and scripts.** Create a token in the [Dockhold dashboard](https://app.dockhold.eu) under Settings, then API tokens (read-only, read+deploy, or with secrets), and pass it as a bearer:
 
 ```json
 {
@@ -140,7 +144,7 @@ For a client that cannot run a local command, the same tools are served over Str
 
 Claude Code: `claude mcp add --transport http dockhold https://api.dockhold.eu/mcp --header "Authorization: Bearer dh_mcp_..."`. This is the one setup that puts a token in a config file, so keep that file out of version control.
 
-A dashboard token can also carry the `secrets` scope, which unlocks five more tools over this connection: `set_app_secret`, `unset_app_secret`, `bind_app_secret`, `list_secrets`, `list_app_secrets`. The browser sign-in never has that scope; with the plugin, secrets are added in the dashboard's Secrets section.
+A dashboard token, or a sign-in connection where you leave the secrets box ticked, can carry the `secrets` scope, which unlocks five more tools over this connection: `set_app_secret`, `unset_app_secret`, `bind_app_secret`, `list_secrets`, `list_app_secrets`. The CLI's browser sign-in never has that scope; with the plugin, secrets are added in the dashboard's Secrets section.
 
 ## Getting started with Dockhold
 
