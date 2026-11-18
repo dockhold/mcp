@@ -14,7 +14,7 @@
         "name": "Dockhold",
         "url": "https://dockhold.eu"
       },
-      "homepage": "https://dockhold.eu/docs/recipes/deploy-from-your-ai-tool",
+      "homepage": "https://dockhold.eu/docs/recipes/deploy-from-your-ai-tool?ref=claude-directory",
       "repository": "https://github.com/dockhold/mcp",
       "license": "MIT",
       "keywords": ["deploy", "hosting", "mcp", "paas", "web-apps", "github"],
