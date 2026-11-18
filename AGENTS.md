@@ -25,6 +25,12 @@ client config, and you must never write one into a file or print one. If a
 tool call reports that the user is not signed in, run `npx dockhold login` in
 a terminal (a browser tab opens) and call the tool again.
 
+The Claude Code plugin (`.mcp.json`) pins the CLI to an exact version
+(`dockhold@0.2.6`), because the Claude plugin directory refuses an unpinned
+launcher. When a new CLI version is published, raise that pin and the
+`version` in both `plugin.json` files in the same PR, or Claude Code users
+keep the old CLI.
+
 ## Workflow for "put this app online"
 
 If the code is only a local folder, run `npx dockhold deploy` and report the

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.1.0/plugin.schema.json",
   "name": "dockhold",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Put the project you are working on online. Deploys the current folder or a GitHub repo to a live HTTPS URL on Dockhold; reads status and logs, sets variables, resizes apps and databases.",
   "author": {
     "name": "Dockhold",
