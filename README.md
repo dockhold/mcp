@@ -10,7 +10,7 @@ No token to copy. Sign-in happens through the browser, the same way as the [Dock
 
 ## Install
 
-Every install below starts the same local MCP server, `npx -y dockhold mcp`. It forwards each request to Dockhold with the sign-in the CLI stored on your machine. Nothing sensitive goes into your editor config.
+Every install below except Claude Code starts the same local MCP server, `npx -y dockhold mcp`. It forwards each request to Dockhold with the sign-in the CLI stored on your machine. Nothing sensitive goes into your editor config.
 
 ### Claude Code
 
@@ -20,6 +20,8 @@ Every install below starts the same local MCP server, `npx -y dockhold mcp`. It 
 ```
 
 This installs the MCP server and a `deploy` skill (invoked as `/dockhold:deploy`, or picked up on its own when you ask to put the project online) that knows the whole flow: preflight, sign-in, deploy, and what to do when a build fails.
+
+The plugin connects Claude Code to the remote server at `https://api.dockhold.eu/mcp`, so nothing runs on your machine for the tools. The first time a tool needs your account, run `/mcp`, pick `dockhold`, and sign in in the browser. The deploy skill still uploads folders with the CLI (`npx dockhold deploy`), which has its own browser sign-in.
 
 ### Cursor
 

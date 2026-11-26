@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "dockhold",
-      "source": "./",
+      "source": "./claude-plugin",
       "description": "Put the project you are working on online. Deploys the current folder or a GitHub repo to a live HTTPS URL on Dockhold; reads status and logs, sets variables, resizes apps and databases.",
       "author": {
         "name": "Dockhold",

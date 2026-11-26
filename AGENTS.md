@@ -25,11 +25,15 @@ client config, and you must never write one into a file or print one. If a
 tool call reports that the user is not signed in, run `npx dockhold login` in
 a terminal (a browser tab opens) and call the tool again.
 
-The Claude Code plugin (`.mcp.json`) pins the CLI to an exact version
-(`dockhold@0.2.6`), because the Claude plugin directory refuses an unpinned
-launcher. When a new CLI version is published, raise that pin and the
-`version` in both `plugin.json` files in the same PR, or Claude Code users
-keep the old CLI.
+The Claude Code plugin lives in `claude-plugin/`, the folder submitted to
+the Claude plugin directory. Its `.mcp.json` names the remote server below,
+never a local command: the directory accepts a server that runs on the
+user's computer only from Verified organizations. Keep that folder to the
+plugin's own files (manifest, `.mcp.json`, skills, icon); the directory
+refuses scripts and instruction files in it. Its skill is a copy of
+`skills/deploy/SKILL.md` that differs only in the sign-in lines: change both
+in the same PR. Raise the `version` in both `plugin.json` files with any
+change to either plugin.
 
 ## Workflow for "put this app online"
 
