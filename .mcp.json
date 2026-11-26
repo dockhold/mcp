@@ -1,9 +1,0 @@
-{
-  "mcpServers": {
-    "dockhold": {
-      "command": "npx",
-      "args": ["-y", "dockhold@0.2.6", "mcp"],
-      "env": { "DOCKHOLD_REF": "claude-plugin" }
-    }
-  }
-}

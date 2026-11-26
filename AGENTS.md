@@ -17,7 +17,7 @@ setup metadata. There is no server code here and none is needed.
    variables, resizing, storage, and restarts all go through the tools; call
    `list_apps` first to get an app id.
 
-Both use the same sign-in. `npx dockhold login` opens the browser once and
+Both use the same sign-in, except in the Claude Code plugin (below). `npx dockhold login` opens the browser once and
 stores an access token on the machine. The MCP server this repository
 configures is `npx -y dockhold mcp`, a local process that forwards each
 request to Dockhold with that stored token. No token is pasted into any
@@ -25,11 +25,15 @@ client config, and you must never write one into a file or print one. If a
 tool call reports that the user is not signed in, run `npx dockhold login` in
 a terminal (a browser tab opens) and call the tool again.
 
-The Claude Code plugin (`.mcp.json`) pins the CLI to an exact version
-(`dockhold@0.2.6`), because the Claude plugin directory refuses an unpinned
-launcher. When a new CLI version is published, raise that pin and the
-`version` in both `plugin.json` files in the same PR, or Claude Code users
-keep the old CLI.
+The Claude Code plugin lives in `claude-plugin/`, the folder submitted to
+the Claude plugin directory. Its `.mcp.json` names the remote server below,
+never a local command: the directory accepts a server that runs on the
+user's computer only from Verified organizations. Keep that folder to the
+plugin's own files (manifest, `.mcp.json`, skills, icon); the directory
+refuses scripts and instruction files in it. Its skill is a copy of
+`skills/deploy/SKILL.md` that differs only in the sign-in lines: change both
+in the same PR. Raise the `version` in both `plugin.json` files with any
+change to either plugin.
 
 ## Workflow for "put this app online"
 
@@ -60,8 +64,8 @@ deployment.
 API keys, passwords, and connection strings never go through
 `set_app_variable` (the tool rejects them) or `--env`. Direct the user to the
 Secrets section of the dashboard, where they add the value and attach it to
-the app. The sign-in the CLI creates can deploy but cannot write secrets, so
-do not attempt it through this connection.
+the app. Do not store a secret through the tools: the value would pass through the
+conversation, and the CLI's sign-in cannot write secrets at all.
 
 ## Clients that need a remote server
 

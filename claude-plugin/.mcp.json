@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "dockhold": {
+      "type": "http",
+      "url": "https://api.dockhold.eu/mcp"
+    }
+  }
+}

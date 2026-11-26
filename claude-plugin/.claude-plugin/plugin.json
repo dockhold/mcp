@@ -1,12 +1,13 @@
 {
   "name": "dockhold",
   "description": "Put the project you are working on online. Deploys the current folder or a GitHub repo to a live HTTPS URL on Dockhold; reads status and logs, sets variables, resizes apps and databases.",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": {
     "name": "Dockhold",
     "url": "https://dockhold.eu"
   },
   "homepage": "https://dockhold.eu/docs/recipes/deploy-from-your-ai-tool?ref=claude-directory",
+  "privacyPolicyUrl": "https://app.dockhold.eu/legal?tab=privacy",
   "icon": "assets/icon.png",
   "repository": "https://github.com/dockhold/mcp",
   "license": "MIT",
