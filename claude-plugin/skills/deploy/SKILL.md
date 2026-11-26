@@ -28,7 +28,7 @@ DOCKHOLD_REF=claude-plugin npx dockhold login
 
 Tell the user a browser tab opens for them to sign in to Dockhold, and that the command continues on its own once they finish. It waits up to five minutes. This sign-in is for the CLI, once per machine.
 
-The MCP tools connect to Dockhold at `https://api.dockhold.eu/mcp` and have a sign-in of their own. If a tool call fails because the server is not connected or needs authentication, tell the user to run `/mcp`, pick `dockhold`, and sign in in the browser tab that opens. They approve what Claude Code may do on their account. Then call the tool again. Never ask the user for a token.
+The MCP tools connect to Dockhold at `https://api.dockhold.eu/mcp` and have a sign-in of their own. If the dockhold tools are missing, or a tool call fails because the server is not connected or needs authentication, tell the user to run `/mcp`, pick `dockhold`, and sign in in the browser tab that opens. They approve what Claude Code may do on their account. Then call the tool again. Never ask the user for a token.
 
 ## 3. Deploy
 

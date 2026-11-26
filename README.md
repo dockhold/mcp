@@ -2,7 +2,7 @@
 
 Put the project you are working on online without leaving your editor. Install once, sign in once in the browser, then say "put this online". Your AI tool deploys the current folder (or a GitHub repo) to [Dockhold](https://dockhold.eu) and reports a live HTTPS URL. It can also read status and logs, set variables, and resize apps and managed databases.
 
-No token to copy. Sign-in happens through the browser, the same way as the [Dockhold CLI](https://github.com/dockhold/cli), and every client below shares it.
+No token to copy. Sign-in happens through the browser, the same way as the [Dockhold CLI](https://github.com/dockhold/cli). Every client below except Claude Code shares the CLI's sign-in; Claude Code signs in on its own through `/mcp`.
 
 - **Docs:** https://dockhold.eu/docs
 - **Registry name:** [`eu.dockhold/dockhold`](https://registry.modelcontextprotocol.io/v0.1/servers?search=eu.dockhold)
@@ -19,7 +19,7 @@ Every install below except Claude Code starts the same local MCP server, `npx -y
 /plugin install dockhold@dockhold
 ```
 
-This installs the MCP server and a `deploy` skill (invoked as `/dockhold:deploy`, or picked up on its own when you ask to put the project online) that knows the whole flow: preflight, sign-in, deploy, and what to do when a build fails.
+This connects Claude Code to the Dockhold tools and installs a `deploy` skill (invoked as `/dockhold:deploy`, or picked up on its own when you ask to put the project online) that knows the whole flow: preflight, sign-in, deploy, and what to do when a build fails.
 
 The plugin connects Claude Code to the remote server at `https://api.dockhold.eu/mcp`, so nothing runs on your machine for the tools. The first time a tool needs your account, run `/mcp`, pick `dockhold`, and sign in in the browser. The deploy skill still uploads folders with the CLI (`npx dockhold deploy`), which has its own browser sign-in.
 
@@ -86,7 +86,9 @@ If your client gives a server only a few seconds to start, the first `npx -y doc
 
 ## Sign in
 
-The first time a tool needs your account it answers with a message that says to run `npx dockhold login` in a terminal. Run it, a browser tab opens, and you are done. The sign-in lasts 90 days and is shared by the CLI and every client above. Nothing else to configure.
+The first time a tool needs your account it answers with a message that says to run `npx dockhold login` in a terminal. Run it, a browser tab opens, and you are done. The sign-in lasts 90 days and is shared by the CLI and every client above except Claude Code. Nothing else to configure.
+
+In Claude Code, run `/mcp`, pick `dockhold`, and sign in in the browser tab that opens. You approve what Claude Code may do on your account.
 
 ## What it looks like
 
@@ -146,7 +148,7 @@ For a client that cannot run a local command, the same tools are served over Str
 
 Claude Code: `claude mcp add --transport http dockhold https://api.dockhold.eu/mcp --header "Authorization: Bearer dh_mcp_..."`. This is the one setup that puts a token in a config file, so keep that file out of version control.
 
-A dashboard token, or a sign-in connection where you leave the secrets box ticked, can carry the `secrets` scope, which unlocks five more tools over this connection: `set_app_secret`, `unset_app_secret`, `bind_app_secret`, `list_secrets`, `list_app_secrets`. The CLI's browser sign-in never has that scope; with the plugin, secrets are added in the dashboard's Secrets section.
+A dashboard token, or a sign-in connection where you leave the secrets box ticked, can carry the `secrets` scope, which unlocks five more tools over this connection: `set_app_secret`, `unset_app_secret`, `bind_app_secret`, `list_secrets`, `list_app_secrets`. The CLI's browser sign-in never has that scope. With the plugin, add secrets in the dashboard's Secrets section, so the value never passes through the conversation.
 
 ## Getting started with Dockhold
 
